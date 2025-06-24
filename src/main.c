@@ -6,7 +6,7 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:33:20 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/23 16:23:03 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:41:46 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,10 @@ int	main(int argc, char *argv[])
 		exit(ft_error());
 	if (!ft_is_sorted(&a))
 	{
-		ft_radix_sort(&a, &b);
-/*		if (ft_radix_sort(&a, &b) == -1)
-		{
-			ft_free_stack(&a);
-			ft_free_stack(&b);
-			exit(ft_error());
-		}*/
+		if (a.size <= 5)
+			ft_small_sort(&a, &b);
+		else
+			ft_radix_sort(&a, &b);
 	}
 	ft_free_stack(&a);
 	return (0);

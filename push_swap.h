@@ -6,7 +6,7 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:22:55 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/23 13:57:04 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:31:48 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_stack
 }	t_stack;
 
 void	ft_radix_sort(t_stack *a, t_stack *b);
+void	ft_small_sort(t_stack *a, t_stack *b);
 void	sa_sb_ss(t_stack *s1, t_stack *s2, char s_name);
 void	pa_pb(t_stack *a, t_stack *b, char s_name);
 void	ra_rb_rr(t_stack *s1, t_stack *s2, char s_name);
