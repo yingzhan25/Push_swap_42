@@ -6,7 +6,7 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:34:14 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/23 16:35:59 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:13:46 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_node	*ft_new_node(int nb)
 	if (!new)
 		return (NULL);
 	new->value = nb;
+	new->index = 0;
 	new->next = NULL;
 	return (new);
 }

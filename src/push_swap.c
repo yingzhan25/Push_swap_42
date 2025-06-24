@@ -6,25 +6,81 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:34:00 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/24 15:32:53 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/24 19:15:42 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	bits_mapping(t_stack *s)
+void	bubble_sort(int *arr, int size)
 {
-	unsigned int	u;
-	t_node			*tmp;
+	int	i;
+	int	j;
+	int	temp;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		j = 0;
+		while (j < size - i - 1)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	get_new_index(int *arr, t_stack *s)
+{
+	int		i;
+	t_node	*tmp;
 
 	tmp = s->head;
 	while (tmp)
 	{
-		u = (unsigned int)tmp->value;
-		u ^= 0x80000000;
-		tmp->value = (int)u;
+		i = 0;
+		while (i < s->size)
+		{
+			if (tmp->value == arr[i])
+			{
+				tmp->index = i;
+				break;
+			}
+			i++;
+		}
 		tmp = tmp->next;
 	}
+}
+
+static void	index_mapping(t_stack *s)
+{
+	t_node	*tmp;
+	int		*arr;
+	int		i;
+
+	arr = malloc(sizeof(int) * s->size);
+	if (!arr)
+	{
+		ft_error();
+		return ;
+	}
+	i = 0;
+	tmp = s->head;
+	while (i < s->size)
+	{
+		arr[i] = tmp->value;
+		tmp = tmp->next;
+		i++;
+	}
+	bubble_sort(arr, s->size);
+	get_new_index(arr, s);
+	free(arr);
 }
 
 static int	count_bits(t_stack *s)
@@ -38,7 +94,7 @@ static int	count_bits(t_stack *s)
 	tmp = s->head;
 	while (tmp)
 	{
-		u = (unsigned int)tmp->value;
+		u = (unsigned int)tmp->index;
 		bits = 0;
 		while (u != 0)
 		{
@@ -59,7 +115,7 @@ void	ft_radix_sort(t_stack *a, t_stack *b)
 	int		i;
 	int		j;
 
-	bits_mapping(a);
+	index_mapping(a);
 	max_bits = count_bits(a);
 	i = -1;
 	size = a->size;
@@ -68,7 +124,7 @@ void	ft_radix_sort(t_stack *a, t_stack *b)
 		j = -1;
 		while (++j < size)
 		{
-			if ((a->head->value >> i) & 1)
+			if ((a->head->index >> i) & 1)
 				ra_rb_rr(a, NULL, 'a');
 			else
 				pa_pb(a, b, 'b');
