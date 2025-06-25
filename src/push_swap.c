@@ -6,7 +6,7 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:34:00 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/24 19:15:42 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:16:23 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,39 @@ static int	count_bits(t_stack *s)
 	return (max_bits);
 }
 
+int	is_edgecase_start(t_stack *a, int i)
+{
+	t_node	*tmp;
+
+	tmp = a->head;
+	if (tmp->index >> i & 1)
+	{
+		tmp = a->head->next;
+		while (tmp)
+		{
+			if (tmp->index >> i & 1)
+				return (0);
+			tmp = tmp->next;
+		}
+		return (1);
+	}
+	return (0);
+}
+
+int	is_edgecase_end(t_stack *a, int i)
+{
+	t_node	*lst;
+
+	lst = a->head;
+	while (lst->next)
+	{
+		if (lst->index >> i & 1)
+			return (0);
+		lst = lst->next;
+	}
+	return (1);
+}
+
 void	ft_radix_sort(t_stack *a, t_stack *b)
 {
 	int		max_bits;
@@ -122,6 +155,13 @@ void	ft_radix_sort(t_stack *a, t_stack *b)
 	while (++i < max_bits)
 	{
 		j = -1;
+		if (is_edgecase_start(a, i))
+		{
+			ra_rb_rr(a, NULL, 'a');
+			continue;
+		}
+		else if (is_edgecase_end(a, i))
+			continue;
 		while (++j < size)
 		{
 			if ((a->head->index >> i) & 1)
