@@ -6,12 +6,13 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:22:55 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/24 16:13:02 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/25 19:00:05 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# define CHUNK_SIZE 5
 
 # include "libft/includes/libft.h"
 # include <stdlib.h>
@@ -40,5 +41,6 @@ t_node	*ft_new_node(int nb);
 void	ft_free_stack(t_stack *s);
 int		ft_is_sorted(t_stack *s);
 int		ft_error(void);
+
 
 #endif

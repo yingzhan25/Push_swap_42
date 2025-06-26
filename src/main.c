@@ -6,7 +6,7 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:33:20 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/25 18:19:56 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/25 20:27:59 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,10 @@ int	main(int argc, char *argv[])
 		if (a.size <= 5)
 			ft_small_sort(&a, &b);
 		else
+		{
+			ft_chunk_sort(&a, &b);
 			ft_radix_sort(&a, &b);
+		}
 	}
 	ft_free_stack(&a);
 	return (0);

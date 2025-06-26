@@ -6,59 +6,14 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:34:00 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/25 15:16:23 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/25 19:01:44 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	bubble_sort(int *arr, int size)
-{
-	int	i;
-	int	j;
-	int	temp;
-
-	i = 0;
-	while (i < size - 1)
-	{
-		j = 0;
-		while (j < size - i - 1)
-		{
-			if (arr[j] > arr[j + 1])
-			{
-				temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	get_new_index(int *arr, t_stack *s)
-{
-	int		i;
-	t_node	*tmp;
-
-	tmp = s->head;
-	while (tmp)
-	{
-		i = 0;
-		while (i < s->size)
-		{
-			if (tmp->value == arr[i])
-			{
-				tmp->index = i;
-				break;
-			}
-			i++;
-		}
-		tmp = tmp->next;
-	}
-}
-
-static void	index_mapping(t_stack *s)
+/*
+void	index_mapping(t_stack *s)
 {
 	t_node	*tmp;
 	int		*arr;
@@ -68,7 +23,7 @@ static void	index_mapping(t_stack *s)
 	if (!arr)
 	{
 		ft_error();
-		return ;
+		return(NULL);
 	}
 	i = 0;
 	tmp = s->head;
@@ -82,7 +37,7 @@ static void	index_mapping(t_stack *s)
 	get_new_index(arr, s);
 	free(arr);
 }
-
+*/
 static int	count_bits(t_stack *s)
 {
 	int		max_bits;
@@ -108,39 +63,6 @@ static int	count_bits(t_stack *s)
 	return (max_bits);
 }
 
-int	is_edgecase_start(t_stack *a, int i)
-{
-	t_node	*tmp;
-
-	tmp = a->head;
-	if (tmp->index >> i & 1)
-	{
-		tmp = a->head->next;
-		while (tmp)
-		{
-			if (tmp->index >> i & 1)
-				return (0);
-			tmp = tmp->next;
-		}
-		return (1);
-	}
-	return (0);
-}
-
-int	is_edgecase_end(t_stack *a, int i)
-{
-	t_node	*lst;
-
-	lst = a->head;
-	while (lst->next)
-	{
-		if (lst->index >> i & 1)
-			return (0);
-		lst = lst->next;
-	}
-	return (1);
-}
-
 void	ft_radix_sort(t_stack *a, t_stack *b)
 {
 	int		max_bits;
@@ -148,20 +70,13 @@ void	ft_radix_sort(t_stack *a, t_stack *b)
 	int		i;
 	int		j;
 
-	index_mapping(a);
+	get_new_index(get_sorted_array(a), a);
 	max_bits = count_bits(a);
 	i = -1;
 	size = a->size;
 	while (++i < max_bits)
 	{
 		j = -1;
-		if (is_edgecase_start(a, i))
-		{
-			ra_rb_rr(a, NULL, 'a');
-			continue;
-		}
-		else if (is_edgecase_end(a, i))
-			continue;
 		while (++j < size)
 		{
 			if ((a->head->index >> i) & 1)
