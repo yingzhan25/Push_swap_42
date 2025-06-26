@@ -1,95 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 15:34:00 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/25 19:01:44 by yingzhan         ###   ########.fr       */
+/*   Created: 2025/06/26 13:21:41 by yingzhan          #+#    #+#             */
+/*   Updated: 2025/06/26 13:22:18 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-/*
-void	index_mapping(t_stack *s)
-{
-	t_node	*tmp;
-	int		*arr;
-	int		i;
-
-	arr = malloc(sizeof(int) * s->size);
-	if (!arr)
-	{
-		ft_error();
-		return(NULL);
-	}
-	i = 0;
-	tmp = s->head;
-	while (i < s->size)
-	{
-		arr[i] = tmp->value;
-		tmp = tmp->next;
-		i++;
-	}
-	bubble_sort(arr, s->size);
-	get_new_index(arr, s);
-	free(arr);
-}
-*/
-static int	count_bits(t_stack *s)
-{
-	int		max_bits;
-	int		bits;
-	unsigned int	u;
-	t_node	*tmp;
-
-	max_bits = 0;
-	tmp = s->head;
-	while (tmp)
-	{
-		u = (unsigned int)tmp->index;
-		bits = 0;
-		while (u != 0)
-		{
-			u >>= 1;
-			bits++;
-		}
-		if (bits > max_bits)
-			max_bits = bits;
-		tmp = tmp->next;
-	}
-	return (max_bits);
-}
-
-void	ft_radix_sort(t_stack *a, t_stack *b)
-{
-	int		max_bits;
-	int		size;
-	int		i;
-	int		j;
-
-	get_new_index(get_sorted_array(a), a);
-	max_bits = count_bits(a);
-	i = -1;
-	size = a->size;
-	while (++i < max_bits)
-	{
-		j = -1;
-		while (++j < size)
-		{
-			if ((a->head->index >> i) & 1)
-				ra_rb_rr(a, NULL, 'a');
-			else
-				pa_pb(a, b, 'b');
-		}
-		while (b->size)
-			pa_pb(a, b, 'a');
-	}
-}
-
-void	ft_sort_3(t_stack *a)
+static void	ft_sort_3(t_stack *a)
 {
 	t_node	*one;
 	t_node	*two;

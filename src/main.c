@@ -6,7 +6,7 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:33:20 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/25 20:27:59 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:33:34 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static int	ft_overflow(char *str)
 	{
 		nb = 10 * nb + (str[i] - '0');
 		if (sign == 1 && nb > INT_MAX)
-			return(1);
+			return (1);
 		else if (sign == -1 && nb > (long)INT_MAX + 1)
-			return(1);
+			return (1);
 		i++;
 	}
 	return (0);
@@ -119,10 +119,11 @@ int	main(int argc, char *argv[])
 	{
 		if (a.size <= 5)
 			ft_small_sort(&a, &b);
-		else
+		else if (ft_radix_sort(&a, &b))
 		{
-			ft_chunk_sort(&a, &b);
-			ft_radix_sort(&a, &b);
+			ft_free_stack(&a);
+			ft_free_stack(&b);
+			return (1);
 		}
 	}
 	ft_free_stack(&a);

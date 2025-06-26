@@ -6,7 +6,7 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:33:55 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/23 13:50:49 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:23:26 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,3 @@ void	pa_pb(t_stack *a, t_stack *b, char s_name)
 		ft_printf("pb\n");
 	}
 }
-

@@ -6,13 +6,12 @@
 /*   By: yingzhan <yingzhan@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:22:55 by yingzhan          #+#    #+#             */
-/*   Updated: 2025/06/25 19:00:05 by yingzhan         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:38:28 by yingzhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# define CHUNK_SIZE 5
 
 # include "libft/includes/libft.h"
 # include <stdlib.h>
@@ -31,7 +30,7 @@ typedef struct s_stack
 	int		size;
 }	t_stack;
 
-void	ft_radix_sort(t_stack *a, t_stack *b);
+int		ft_radix_sort(t_stack *a, t_stack *b);
 void	ft_small_sort(t_stack *a, t_stack *b);
 void	sa_sb_ss(t_stack *s1, t_stack *s2, char s_name);
 void	pa_pb(t_stack *a, t_stack *b, char s_name);
@@ -41,6 +40,6 @@ t_node	*ft_new_node(int nb);
 void	ft_free_stack(t_stack *s);
 int		ft_is_sorted(t_stack *s);
 int		ft_error(void);
-
+void	bubble_sort(int *arr, int size);
 
 #endif
